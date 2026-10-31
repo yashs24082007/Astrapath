@@ -3,6 +3,3 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
-
-[build.environment]
-  SECRETS_SCAN_OMIT_KEYS = "GEMINI_API_KEY"
