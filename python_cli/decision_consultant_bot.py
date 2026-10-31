@@ -6,7 +6,9 @@ Uses Gemini 2.5 Flash with the exact 6-section neutral analytical SYSTEM_PROMPT.
 import os
 import google.generativeai as genai
 
-API_KEY = os.environ.get("GEMINI_API_KEY", "AIzaSyAd4m8xzzIcGcvDffvLOGO2_B_IcXirDMI")
+API_KEY = os.environ.get("GEMINI_API_KEY")
+if not API_KEY:
+    raise SystemExit("GEMINI_API_KEY environment variable is not set.")
 genai.configure(api_key=API_KEY)
 
 model = genai.GenerativeModel("models/gemini-2.5-flash")
