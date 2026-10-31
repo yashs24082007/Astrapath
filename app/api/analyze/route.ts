@@ -32,7 +32,10 @@ const SYSTEM_PROMPT = [
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const apiKey = process.env.GEMINI_API_KEY || "AIzaSyAd4m8xzzIcGcvDffvLOGO2_B_IcXirDMI";
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      return NextResponse.json({ error: "GEMINI_API_KEY is not configured" }, { status: 500 });
+    }
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
